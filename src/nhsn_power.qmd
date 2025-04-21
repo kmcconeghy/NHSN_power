@@ -1,0 +1,46 @@
+---
+title: "NHSN Power Analysis"
+author: "Kevin W McConeghy"
+format: html
+editor: visual
+---
+
+```{r }
+#| label: setup
+
+library(here())
+source(here('src', 'setup.R'), echo=F)
+
+```
+
+# Introduction  
+
+Using the National Healthcare and Safety Network public use data, we perform some power calculations for a hypothetical vaccine trial in the 2023-2024 season. 
+
+# Inclusion criteria
+
+The total dataset includes ~15,000 nursing homes. We limit the data to those homes with complete data from 2023-2025, and homes where the mean weekly vaccination rate is >=20%, and the average weekly census is >= 50. 
+
+# NHSN dataset  
+
+```{r }
+#| label: ld-dta
+#| 
+
+d_nhsn = readRDS(file = here('dta', 'nhsn_23_24_agg'))
+```
+
+
+# Basic information on dataset  
+
+```{r }
+#| label: summ-dta
+glimpse(d_nhsn)
+
+i_facs = n_distinct(d_nhsn$ccn)
+
+summary(d_nhsn$vacc)
+
+summary(d_nhsn$c19_endpoint)
+sum(d_nhsn$c19_endpoint, na.rm=T)
+```

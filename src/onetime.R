@@ -2,4 +2,4 @@
   renv::init()
   install.packages('remotes')
   install.packages(c('tidyverse', 'lubridate', 'here', 'knitr', 'quarto',
-                     'future', 'progressr'))
+                     'future', 'progressr', 'furrr'))
